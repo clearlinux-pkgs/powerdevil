@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : powerdevil
-Version  : 5.15.1
-Release  : 5
-URL      : https://download.kde.org/stable/plasma/5.15.1/powerdevil-5.15.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.15.1/powerdevil-5.15.1.tar.xz
-Source99 : https://download.kde.org/stable/plasma/5.15.1/powerdevil-5.15.1.tar.xz.sig
+Version  : 5.15.2
+Release  : 6
+URL      : https://download.kde.org/stable/plasma/5.15.2/powerdevil-5.15.2.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.15.2/powerdevil-5.15.2.tar.xz
+Source99 : https://download.kde.org/stable/plasma/5.15.2/powerdevil-5.15.2.tar.xz.sig
 Summary  : Manages the power consumption settings of a Plasma Shell
 Group    : Development/Tools
 License  : GPL-2.0
@@ -50,6 +50,7 @@ Group: Development
 Requires: powerdevil-lib = %{version}-%{release}
 Requires: powerdevil-data = %{version}-%{release}
 Provides: powerdevil-devel = %{version}-%{release}
+Requires: powerdevil = %{version}-%{release}
 
 %description dev
 dev components for the powerdevil package.
@@ -90,14 +91,14 @@ locales components for the powerdevil package.
 
 
 %prep
-%setup -q -n powerdevil-5.15.1
+%setup -q -n powerdevil-5.15.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1550600922
+export SOURCE_DATE_EPOCH=1551215453
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -105,7 +106,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1550600922
+export SOURCE_DATE_EPOCH=1551215453
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
 cp COPYING %{buildroot}/usr/share/package-licenses/powerdevil/COPYING
@@ -190,11 +191,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libpowerdevilconfigcommonprivate.so.5
-/usr/lib64/libpowerdevilconfigcommonprivate.so.5.15.1
+/usr/lib64/libpowerdevilconfigcommonprivate.so.5.15.2
 /usr/lib64/libpowerdevilcore.so.2
 /usr/lib64/libpowerdevilcore.so.2.0.0
 /usr/lib64/libpowerdevilui.so.5
-/usr/lib64/libpowerdevilui.so.5.15.1
+/usr/lib64/libpowerdevilui.so.5.15.2
 /usr/lib64/qt5/plugins/kcm_powerdevilactivitiesconfig.so
 /usr/lib64/qt5/plugins/kcm_powerdevilglobalconfig.so
 /usr/lib64/qt5/plugins/kcm_powerdevilprofilesconfig.so
