@@ -6,7 +6,7 @@
 #
 Name     : powerdevil
 Version  : 5.15.4
-Release  : 9
+Release  : 10
 URL      : https://download.kde.org/stable/plasma/5.15.4/powerdevil-5.15.4.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.15.4/powerdevil-5.15.4.tar.xz
 Source99 : https://download.kde.org/stable/plasma/5.15.4/powerdevil-5.15.4.tar.xz.sig
@@ -98,15 +98,22 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555346128
+export SOURCE_DATE_EPOCH=1557047534
 mkdir -p clr-build
 pushd clr-build
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1555346128
+export SOURCE_DATE_EPOCH=1557047534
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
 cp COPYING %{buildroot}/usr/share/package-licenses/powerdevil/COPYING
