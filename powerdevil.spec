@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : powerdevil
-Version  : 5.16.3
-Release  : 15
-URL      : https://download.kde.org/stable/plasma/5.16.3/powerdevil-5.16.3.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.16.3/powerdevil-5.16.3.tar.xz
-Source99 : https://download.kde.org/stable/plasma/5.16.3/powerdevil-5.16.3.tar.xz.sig
+Version  : 5.16.4
+Release  : 16
+URL      : https://download.kde.org/stable/plasma/5.16.4/powerdevil-5.16.4.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.16.4/powerdevil-5.16.4.tar.xz
+Source1 : https://download.kde.org/stable/plasma/5.16.4/powerdevil-5.16.4.tar.xz.sig
 Summary  : Manages the power consumption settings of a Plasma Shell
 Group    : Development/Tools
 License  : GPL-2.0
@@ -92,14 +92,14 @@ locales components for the powerdevil package.
 
 
 %prep
-%setup -q -n powerdevil-5.16.3
+%setup -q -n powerdevil-5.16.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562789028
+export SOURCE_DATE_EPOCH=1564522577
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -115,7 +115,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1562789028
+export SOURCE_DATE_EPOCH=1564522577
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
 cp COPYING %{buildroot}/usr/share/package-licenses/powerdevil/COPYING
@@ -200,11 +200,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libpowerdevilconfigcommonprivate.so.5
-/usr/lib64/libpowerdevilconfigcommonprivate.so.5.16.3
+/usr/lib64/libpowerdevilconfigcommonprivate.so.5.16.4
 /usr/lib64/libpowerdevilcore.so.2
 /usr/lib64/libpowerdevilcore.so.2.0.0
 /usr/lib64/libpowerdevilui.so.5
-/usr/lib64/libpowerdevilui.so.5.16.3
+/usr/lib64/libpowerdevilui.so.5.16.4
 /usr/lib64/qt5/plugins/kcm_powerdevilactivitiesconfig.so
 /usr/lib64/qt5/plugins/kcm_powerdevilglobalconfig.so
 /usr/lib64/qt5/plugins/kcm_powerdevilprofilesconfig.so
