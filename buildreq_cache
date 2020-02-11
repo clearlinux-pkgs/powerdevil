@@ -1,4 +1,4 @@
-5.17.5
+5.18.0
 bluez-qt-dev
 kactivities-dev
 kglobalaccel-dev
@@ -6,4 +6,3 @@ kidletime-dev
 knotifyconfig-dev
 kwayland-dev
 systemd-dev
-util-linux
