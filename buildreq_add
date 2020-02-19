@@ -1,5 +1,12 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
+bluez-qt-dev
+kactivities-dev
+kded-dev
+kglobalaccel-dev
+kidletime-dev
+knotifyconfig-dev
+kwayland-dev
 libkscreen-dev
 plasma-workspace-dev
-kded-dev
+systemd-dev
