@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : powerdevil
-Version  : 5.18.2
-Release  : 26
-URL      : https://download.kde.org/stable/plasma/5.18.2/powerdevil-5.18.2.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.18.2/powerdevil-5.18.2.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.18.2/powerdevil-5.18.2.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 5.18.3
+Release  : 27
+URL      : https://download.kde.org/stable/plasma/5.18.3/powerdevil-5.18.3.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.18.3/powerdevil-5.18.3.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.18.3/powerdevil-5.18.3.tar.xz.sig
+Summary  : Manages the power consumption settings of a Plasma Shell
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: powerdevil-data = %{version}-%{release}
@@ -50,6 +50,7 @@ Group: Development
 Requires: powerdevil-lib = %{version}-%{release}
 Requires: powerdevil-data = %{version}-%{release}
 Provides: powerdevil-devel = %{version}-%{release}
+Requires: powerdevil = %{version}-%{release}
 Requires: powerdevil = %{version}-%{release}
 
 %description dev
@@ -91,17 +92,18 @@ locales components for the powerdevil package.
 
 
 %prep
-%setup -q -n powerdevil-5.18.2
-cd %{_builddir}/powerdevil-5.18.2
+%setup -q -n powerdevil-5.18.3
+cd %{_builddir}/powerdevil-5.18.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582935804
+export SOURCE_DATE_EPOCH=1583873928
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -115,10 +117,10 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1582935804
+export SOURCE_DATE_EPOCH=1583873928
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
-cp %{_builddir}/powerdevil-5.18.2/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/powerdevil-5.18.3/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976
 pushd clr-build
 %make_install
 popd
@@ -202,11 +204,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libpowerdevilconfigcommonprivate.so.5
-/usr/lib64/libpowerdevilconfigcommonprivate.so.5.18.2
+/usr/lib64/libpowerdevilconfigcommonprivate.so.5.18.3
 /usr/lib64/libpowerdevilcore.so.2
 /usr/lib64/libpowerdevilcore.so.2.0.0
 /usr/lib64/libpowerdevilui.so.5
-/usr/lib64/libpowerdevilui.so.5.18.2
+/usr/lib64/libpowerdevilui.so.5.18.3
 /usr/lib64/qt5/plugins/kcm_powerdevilactivitiesconfig.so
 /usr/lib64/qt5/plugins/kcm_powerdevilglobalconfig.so
 /usr/lib64/qt5/plugins/kcm_powerdevilprofilesconfig.so
