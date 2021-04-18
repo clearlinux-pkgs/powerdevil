@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : powerdevil
-Version  : 5.20.5
-Release  : 39
-URL      : https://download.kde.org/stable/plasma/5.20.5/powerdevil-5.20.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.20.5/powerdevil-5.20.5.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.20.5/powerdevil-5.20.5.tar.xz.sig
+Version  : 5.21.4
+Release  : 40
+URL      : https://download.kde.org/stable/plasma/5.21.4/powerdevil-5.21.4.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.21.4/powerdevil-5.21.4.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.21.4/powerdevil-5.21.4.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -17,6 +17,7 @@ Requires: powerdevil-data = %{version}-%{release}
 Requires: powerdevil-lib = %{version}-%{release}
 Requires: powerdevil-license = %{version}-%{release}
 Requires: powerdevil-locales = %{version}-%{release}
+Requires: powerdevil-services = %{version}-%{release}
 BuildRequires : bluez-qt-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
@@ -95,16 +96,24 @@ Group: Default
 locales components for the powerdevil package.
 
 
+%package services
+Summary: services components for the powerdevil package.
+Group: Systemd services
+
+%description services
+services components for the powerdevil package.
+
+
 %prep
-%setup -q -n powerdevil-5.20.5
-cd %{_builddir}/powerdevil-5.20.5
+%setup -q -n powerdevil-5.21.4
+cd %{_builddir}/powerdevil-5.21.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1609883600
+export SOURCE_DATE_EPOCH=1618704145
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -120,10 +129,10 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1609883600
+export SOURCE_DATE_EPOCH=1618704145
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
-cp %{_builddir}/powerdevil-5.20.5/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/powerdevil-5.21.4/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976
 pushd clr-build
 %make_install
 popd
@@ -203,6 +212,8 @@ popd
 /usr/share/doc/HTML/ru/kcontrol/powerdevil/energy.png
 /usr/share/doc/HTML/ru/kcontrol/powerdevil/index.cache.bz2
 /usr/share/doc/HTML/ru/kcontrol/powerdevil/index.docbook
+/usr/share/doc/HTML/sv/kcontrol/powerdevil/index.cache.bz2
+/usr/share/doc/HTML/sv/kcontrol/powerdevil/index.docbook
 /usr/share/doc/HTML/uk/kcontrol/powerdevil/activity.png
 /usr/share/doc/HTML/uk/kcontrol/powerdevil/advanced.png
 /usr/share/doc/HTML/uk/kcontrol/powerdevil/energy.png
@@ -212,11 +223,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libpowerdevilconfigcommonprivate.so.5
-/usr/lib64/libpowerdevilconfigcommonprivate.so.5.20.5
+/usr/lib64/libpowerdevilconfigcommonprivate.so.5.21.4
 /usr/lib64/libpowerdevilcore.so.2
 /usr/lib64/libpowerdevilcore.so.2.0.0
 /usr/lib64/libpowerdevilui.so.5
-/usr/lib64/libpowerdevilui.so.5.20.5
+/usr/lib64/libpowerdevilui.so.5.21.4
 /usr/lib64/qt5/plugins/kcm_powerdevilactivitiesconfig.so
 /usr/lib64/qt5/plugins/kcm_powerdevilglobalconfig.so
 /usr/lib64/qt5/plugins/kcm_powerdevilprofilesconfig.so
@@ -234,6 +245,10 @@ popd
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/user/plasma-powerdevil.service
 
 %files locales -f libpowerdevilcommonconfig.lang -f powerdevil.lang -f powerdevilactivitiesconfig.lang -f powerdevilglobalconfig.lang -f powerdevilprofilesconfig.lang
 %defattr(-,root,root,-)
