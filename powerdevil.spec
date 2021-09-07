@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : powerdevil
-Version  : 5.22.1
-Release  : 42
-URL      : https://download.kde.org/stable/plasma/5.22.1/powerdevil-5.22.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.22.1/powerdevil-5.22.1.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.22.1/powerdevil-5.22.1.tar.xz.sig
+Version  : 5.22.5
+Release  : 43
+URL      : https://download.kde.org/stable/plasma/5.22.5/powerdevil-5.22.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.22.5/powerdevil-5.22.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.22.5/powerdevil-5.22.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -105,34 +105,34 @@ services components for the powerdevil package.
 
 
 %prep
-%setup -q -n powerdevil-5.22.1
-cd %{_builddir}/powerdevil-5.22.1
+%setup -q -n powerdevil-5.22.5
+cd %{_builddir}/powerdevil-5.22.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623814515
+export SOURCE_DATE_EPOCH=1630973280
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623814515
+export SOURCE_DATE_EPOCH=1630973280
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
-cp %{_builddir}/powerdevil-5.22.1/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/powerdevil-5.22.5/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976
 pushd clr-build
 %make_install
 popd
@@ -225,11 +225,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libpowerdevilconfigcommonprivate.so.5
-/usr/lib64/libpowerdevilconfigcommonprivate.so.5.22.1
+/usr/lib64/libpowerdevilconfigcommonprivate.so.5.22.5
 /usr/lib64/libpowerdevilcore.so.2
-/usr/lib64/libpowerdevilcore.so.5.22.1
+/usr/lib64/libpowerdevilcore.so.5.22.5
 /usr/lib64/libpowerdevilui.so.5
-/usr/lib64/libpowerdevilui.so.5.22.1
+/usr/lib64/libpowerdevilui.so.5.22.5
 /usr/lib64/qt5/plugins/kcm_powerdevilactivitiesconfig.so
 /usr/lib64/qt5/plugins/kcm_powerdevilglobalconfig.so
 /usr/lib64/qt5/plugins/kcm_powerdevilprofilesconfig.so
