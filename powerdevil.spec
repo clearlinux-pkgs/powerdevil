@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : powerdevil
-Version  : 5.25.5
-Release  : 62
-URL      : https://download.kde.org/stable/plasma/5.25.5/powerdevil-5.25.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.25.5/powerdevil-5.25.5.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.25.5/powerdevil-5.25.5.tar.xz.sig
+Version  : 5.26.0
+Release  : 63
+URL      : https://download.kde.org/stable/plasma/5.26.0/powerdevil-5.26.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.26.0/powerdevil-5.26.0.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.26.0/powerdevil-5.26.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GPL-2.0
+License  : CC0-1.0 GPL-2.0
 Requires: powerdevil-data = %{version}-%{release}
 Requires: powerdevil-lib = %{version}-%{release}
 Requires: powerdevil-license = %{version}-%{release}
@@ -27,7 +27,6 @@ BuildRequires : kactivities-dev
 BuildRequires : kded-dev
 BuildRequires : kdoctools-dev
 BuildRequires : kglobalaccel-dev
-BuildRequires : ki18n-dev
 BuildRequires : kidletime-dev
 BuildRequires : kirigami2-dev
 BuildRequires : knotifyconfig-dev
@@ -106,15 +105,15 @@ services components for the powerdevil package.
 
 
 %prep
-%setup -q -n powerdevil-5.25.5
-cd %{_builddir}/powerdevil-5.25.5
+%setup -q -n powerdevil-5.26.0
+cd %{_builddir}/powerdevil-5.26.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1662508494
+export SOURCE_DATE_EPOCH=1665768810
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -130,10 +129,11 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1662508494
+export SOURCE_DATE_EPOCH=1665768810
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
 cp %{_builddir}/powerdevil-%{version}/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976 || :
+cp %{_builddir}/powerdevil-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/powerdevil/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
 pushd clr-build
 %make_install
 popd
@@ -152,6 +152,9 @@ popd
 
 %files data
 %defattr(-,root,root,-)
+/usr/share/applications/kcm_powerdevilactivitiesconfig.desktop
+/usr/share/applications/kcm_powerdevilglobalconfig.desktop
+/usr/share/applications/kcm_powerdevilprofilesconfig.desktop
 /usr/share/dbus-1/system-services/org.kde.powerdevil.backlighthelper.service
 /usr/share/dbus-1/system-services/org.kde.powerdevil.chargethresholdhelper.service
 /usr/share/dbus-1/system-services/org.kde.powerdevil.discretegpuhelper.service
@@ -159,19 +162,6 @@ popd
 /usr/share/dbus-1/system.d/org.kde.powerdevil.chargethresholdhelper.conf
 /usr/share/dbus-1/system.d/org.kde.powerdevil.discretegpuhelper.conf
 /usr/share/knotifications5/powerdevil.notifyrc
-/usr/share/kservices5/powerdevilactivitiesconfig.desktop
-/usr/share/kservices5/powerdevilbrightnesscontrolaction.desktop
-/usr/share/kservices5/powerdevildimdisplayaction.desktop
-/usr/share/kservices5/powerdevildpmsaction.desktop
-/usr/share/kservices5/powerdevilglobalconfig.desktop
-/usr/share/kservices5/powerdevilhandlebuttoneventsaction.desktop
-/usr/share/kservices5/powerdevilkeyboardbrightnesscontrolaction.desktop
-/usr/share/kservices5/powerdevilpowerprofileaction.desktop
-/usr/share/kservices5/powerdevilprofilesconfig.desktop
-/usr/share/kservices5/powerdevilrunscriptaction.desktop
-/usr/share/kservices5/powerdevilsuspendsessionaction.desktop
-/usr/share/kservices5/powerdevilwirelesspowersavingaction.desktop
-/usr/share/kservicetypes5/powerdevilaction.desktop
 /usr/share/polkit-1/actions/org.kde.powerdevil.backlighthelper.policy
 /usr/share/polkit-1/actions/org.kde.powerdevil.chargethresholdhelper.policy
 /usr/share/polkit-1/actions/org.kde.powerdevil.discretegpuhelper.policy
@@ -227,15 +217,24 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libpowerdevilconfigcommonprivate.so.5
-/usr/lib64/libpowerdevilconfigcommonprivate.so.5.25.5
+/usr/lib64/libpowerdevilconfigcommonprivate.so.5.26.0
 /usr/lib64/libpowerdevilcore.so.2
-/usr/lib64/libpowerdevilcore.so.5.25.5
+/usr/lib64/libpowerdevilcore.so.5.26.0
 /usr/lib64/libpowerdevilui.so.5
-/usr/lib64/libpowerdevilui.so.5.25.5
-/usr/lib64/qt5/plugins/kcm_powerdevilactivitiesconfig.so
-/usr/lib64/qt5/plugins/kcm_powerdevilglobalconfig.so
-/usr/lib64/qt5/plugins/kcm_powerdevilprofilesconfig.so
+/usr/lib64/libpowerdevilui.so.5.26.0
 /usr/lib64/qt5/plugins/kf5/powerdevil/powerdevilupowerbackend.so
+/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilactivitiesconfig.so
+/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilglobalconfig.so
+/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilprofilesconfig.so
+/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_brightnesscontrolaction.so
+/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_dimdisplayaction.so
+/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_dpmsaction.so
+/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_handlebuttoneventsaction.so
+/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_keyboardbrightnesscontrolaction.so
+/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_powerprofileaction.so
+/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_runscriptaction.so
+/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_suspendsessionaction.so
+/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_wirelesspowersavingaction.so
 /usr/lib64/qt5/plugins/powerdevilbrightnesscontrolaction_config.so
 /usr/lib64/qt5/plugins/powerdevildimdisplayaction_config.so
 /usr/lib64/qt5/plugins/powerdevildpmsaction_config.so
@@ -249,6 +248,7 @@ popd
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976
+/usr/share/package-licenses/powerdevil/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
 
 %files services
 %defattr(-,root,root,-)
