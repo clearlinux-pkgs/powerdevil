@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : powerdevil
-Version  : 5.26.0
-Release  : 63
-URL      : https://download.kde.org/stable/plasma/5.26.0/powerdevil-5.26.0.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.26.0/powerdevil-5.26.0.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.26.0/powerdevil-5.26.0.tar.xz.sig
+Version  : 5.26.1
+Release  : 64
+URL      : https://download.kde.org/stable/plasma/5.26.1/powerdevil-5.26.1.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.26.1/powerdevil-5.26.1.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.26.1/powerdevil-5.26.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0
@@ -105,15 +105,15 @@ services components for the powerdevil package.
 
 
 %prep
-%setup -q -n powerdevil-5.26.0
-cd %{_builddir}/powerdevil-5.26.0
+%setup -q -n powerdevil-5.26.1
+cd %{_builddir}/powerdevil-5.26.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1665768810
+export SOURCE_DATE_EPOCH=1666288921
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -129,7 +129,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1665768810
+export SOURCE_DATE_EPOCH=1666288921
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
 cp %{_builddir}/powerdevil-%{version}/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976 || :
@@ -217,11 +217,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libpowerdevilconfigcommonprivate.so.5
-/usr/lib64/libpowerdevilconfigcommonprivate.so.5.26.0
+/usr/lib64/libpowerdevilconfigcommonprivate.so.5.26.1
 /usr/lib64/libpowerdevilcore.so.2
-/usr/lib64/libpowerdevilcore.so.5.26.0
+/usr/lib64/libpowerdevilcore.so.5.26.1
 /usr/lib64/libpowerdevilui.so.5
-/usr/lib64/libpowerdevilui.so.5.26.0
+/usr/lib64/libpowerdevilui.so.5.26.1
 /usr/lib64/qt5/plugins/kf5/powerdevil/powerdevilupowerbackend.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilactivitiesconfig.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilglobalconfig.so
