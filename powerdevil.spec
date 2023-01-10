@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : powerdevil
-Version  : 5.26.4
-Release  : 67
-URL      : https://download.kde.org/stable/plasma/5.26.4/powerdevil-5.26.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.26.4/powerdevil-5.26.4.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.26.4/powerdevil-5.26.4.tar.xz.sig
+Version  : 5.26.5
+Release  : 68
+URL      : https://download.kde.org/stable/plasma/5.26.5/powerdevil-5.26.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.26.5/powerdevil-5.26.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.26.5/powerdevil-5.26.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0
@@ -37,6 +37,9 @@ BuildRequires : pkg-config
 BuildRequires : plasma-workspace-dev
 BuildRequires : qtbase-dev mesa-dev
 BuildRequires : systemd-dev
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 No detailed description available
@@ -104,31 +107,31 @@ services components for the powerdevil package.
 
 
 %prep
-%setup -q -n powerdevil-5.26.4
-cd %{_builddir}/powerdevil-5.26.4
+%setup -q -n powerdevil-5.26.5
+cd %{_builddir}/powerdevil-5.26.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1669826174
+export SOURCE_DATE_EPOCH=1673314269
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1669826174
+export SOURCE_DATE_EPOCH=1673314269
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
 cp %{_builddir}/powerdevil-%{version}/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976 || :
@@ -216,11 +219,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libpowerdevilconfigcommonprivate.so.5
-/usr/lib64/libpowerdevilconfigcommonprivate.so.5.26.4
+/usr/lib64/libpowerdevilconfigcommonprivate.so.5.26.5
 /usr/lib64/libpowerdevilcore.so.2
-/usr/lib64/libpowerdevilcore.so.5.26.4
+/usr/lib64/libpowerdevilcore.so.5.26.5
 /usr/lib64/libpowerdevilui.so.5
-/usr/lib64/libpowerdevilui.so.5.26.4
+/usr/lib64/libpowerdevilui.so.5.26.5
 /usr/lib64/qt5/plugins/kf5/powerdevil/powerdevilupowerbackend.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilactivitiesconfig.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilglobalconfig.so
