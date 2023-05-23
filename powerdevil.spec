@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : powerdevil
-Version  : 5.27.4.1
-Release  : 74
-URL      : https://download.kde.org/stable/plasma/5.27.4/powerdevil-5.27.4.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.4/powerdevil-5.27.4.1.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.4/powerdevil-5.27.4.1.tar.xz.sig
+Version  : 5.27.5
+Release  : 75
+URL      : https://download.kde.org/stable/plasma/5.27.5/powerdevil-5.27.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.5/powerdevil-5.27.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.5/powerdevil-5.27.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0
@@ -102,41 +102,62 @@ locales components for the powerdevil package.
 %package services
 Summary: services components for the powerdevil package.
 Group: Systemd services
+Requires: systemd
 
 %description services
 services components for the powerdevil package.
 
 
 %prep
-%setup -q -n powerdevil-5.27.4.1
-cd %{_builddir}/powerdevil-5.27.4.1
+%setup -q -n powerdevil-5.27.5
+cd %{_builddir}/powerdevil-5.27.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680720665
+export SOURCE_DATE_EPOCH=1684883893
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1680720665
+export SOURCE_DATE_EPOCH=1684883893
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
 cp %{_builddir}/powerdevil-%{version}/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976 || :
 cp %{_builddir}/powerdevil-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/powerdevil/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
@@ -145,9 +166,14 @@ popd
 %find_lang powerdevilactivitiesconfig
 %find_lang powerdevilglobalconfig
 %find_lang powerdevilprofilesconfig
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
+/V3/usr/lib64/libexec/kauth/backlighthelper
+/V3/usr/lib64/libexec/kauth/chargethresholdhelper
+/V3/usr/lib64/libexec/kauth/discretegpuhelper
+/V3/usr/lib64/libexec/org_kde_powerdevil
 /usr/lib64/libexec/kauth/backlighthelper
 /usr/lib64/libexec/kauth/chargethresholdhelper
 /usr/lib64/libexec/kauth/discretegpuhelper
@@ -173,6 +199,9 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libpowerdevilconfigcommonprivate.so
+/V3/usr/lib64/libpowerdevilcore.so
+/V3/usr/lib64/libpowerdevilui.so
 /usr/lib64/libpowerdevilconfigcommonprivate.so
 /usr/lib64/libpowerdevilcore.so
 /usr/lib64/libpowerdevilui.so
@@ -211,6 +240,8 @@ popd
 /usr/share/doc/HTML/ru/kcontrol/powerdevil/index.docbook
 /usr/share/doc/HTML/sv/kcontrol/powerdevil/index.cache.bz2
 /usr/share/doc/HTML/sv/kcontrol/powerdevil/index.docbook
+/usr/share/doc/HTML/tr/kcontrol/powerdevil/index.cache.bz2
+/usr/share/doc/HTML/tr/kcontrol/powerdevil/index.docbook
 /usr/share/doc/HTML/uk/kcontrol/powerdevil/activity.png
 /usr/share/doc/HTML/uk/kcontrol/powerdevil/advanced.png
 /usr/share/doc/HTML/uk/kcontrol/powerdevil/energy.png
@@ -219,12 +250,40 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libpowerdevilconfigcommonprivate.so.5
+/V3/usr/lib64/libpowerdevilconfigcommonprivate.so.5.27.5
+/V3/usr/lib64/libpowerdevilcore.so.2
+/V3/usr/lib64/libpowerdevilcore.so.5.27.5
+/V3/usr/lib64/libpowerdevilui.so.5
+/V3/usr/lib64/libpowerdevilui.so.5.27.5
+/V3/usr/lib64/qt5/plugins/kf5/powerdevil/powerdevilupowerbackend.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilactivitiesconfig.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilglobalconfig.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilprofilesconfig.so
+/V3/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_brightnesscontrolaction.so
+/V3/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_dimdisplayaction.so
+/V3/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_dpmsaction.so
+/V3/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_handlebuttoneventsaction.so
+/V3/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_keyboardbrightnesscontrolaction.so
+/V3/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_powerprofileaction.so
+/V3/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_runscriptaction.so
+/V3/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_suspendsessionaction.so
+/V3/usr/lib64/qt5/plugins/powerdevil/action/powerdevil_wirelesspowersavingaction.so
+/V3/usr/lib64/qt5/plugins/powerdevilbrightnesscontrolaction_config.so
+/V3/usr/lib64/qt5/plugins/powerdevildimdisplayaction_config.so
+/V3/usr/lib64/qt5/plugins/powerdevildpmsaction_config.so
+/V3/usr/lib64/qt5/plugins/powerdevilhandlebuttoneventsaction_config.so
+/V3/usr/lib64/qt5/plugins/powerdevilkeyboardbrightnesscontrolaction_config.so
+/V3/usr/lib64/qt5/plugins/powerdevilpowerprofileaction_config.so
+/V3/usr/lib64/qt5/plugins/powerdevilrunscriptaction_config.so
+/V3/usr/lib64/qt5/plugins/powerdevilsuspendsessionaction_config.so
+/V3/usr/lib64/qt5/plugins/powerdevilwirelesspowersavingaction_config.so
 /usr/lib64/libpowerdevilconfigcommonprivate.so.5
-/usr/lib64/libpowerdevilconfigcommonprivate.so.5.27.4
+/usr/lib64/libpowerdevilconfigcommonprivate.so.5.27.5
 /usr/lib64/libpowerdevilcore.so.2
-/usr/lib64/libpowerdevilcore.so.5.27.4
+/usr/lib64/libpowerdevilcore.so.5.27.5
 /usr/lib64/libpowerdevilui.so.5
-/usr/lib64/libpowerdevilui.so.5.27.4
+/usr/lib64/libpowerdevilui.so.5.27.5
 /usr/lib64/qt5/plugins/kf5/powerdevil/powerdevilupowerbackend.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilactivitiesconfig.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilglobalconfig.so
