@@ -7,7 +7,7 @@
 #
 Name     : powerdevil
 Version  : 5.27.5
-Release  : 75
+Release  : 76
 URL      : https://download.kde.org/stable/plasma/5.27.5/powerdevil-5.27.5.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.27.5/powerdevil-5.27.5.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.27.5/powerdevil-5.27.5.tar.xz.sig
@@ -117,7 +117,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684883893
+export SOURCE_DATE_EPOCH=1685564801
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -150,7 +150,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1684883893
+export SOURCE_DATE_EPOCH=1685564801
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
 cp %{_builddir}/powerdevil-%{version}/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976 || :
@@ -199,9 +199,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libpowerdevilconfigcommonprivate.so
-/V3/usr/lib64/libpowerdevilcore.so
-/V3/usr/lib64/libpowerdevilui.so
 /usr/lib64/libpowerdevilconfigcommonprivate.so
 /usr/lib64/libpowerdevilcore.so
 /usr/lib64/libpowerdevilui.so
@@ -250,11 +247,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libpowerdevilconfigcommonprivate.so.5
 /V3/usr/lib64/libpowerdevilconfigcommonprivate.so.5.27.5
-/V3/usr/lib64/libpowerdevilcore.so.2
 /V3/usr/lib64/libpowerdevilcore.so.5.27.5
-/V3/usr/lib64/libpowerdevilui.so.5
 /V3/usr/lib64/libpowerdevilui.so.5.27.5
 /V3/usr/lib64/qt5/plugins/kf5/powerdevil/powerdevilupowerbackend.so
 /V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilactivitiesconfig.so
