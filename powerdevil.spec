@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : powerdevil
-Version  : 5.27.9
-Release  : 81
-URL      : https://download.kde.org/stable/plasma/5.27.9/powerdevil-5.27.9.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.9/powerdevil-5.27.9.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.9/powerdevil-5.27.9.tar.xz.sig
+Version  : 5.27.10
+Release  : 82
+URL      : https://download.kde.org/stable/plasma/5.27.10/powerdevil-5.27.10.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.10/powerdevil-5.27.10.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.10/powerdevil-5.27.10.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0
@@ -111,15 +111,15 @@ services components for the powerdevil package.
 
 
 %prep
-%setup -q -n powerdevil-5.27.9
-cd %{_builddir}/powerdevil-5.27.9
+%setup -q -n powerdevil-5.27.10
+cd %{_builddir}/powerdevil-5.27.10
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1702061548
+export SOURCE_DATE_EPOCH=1703120277
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -178,7 +178,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1702061548
+export SOURCE_DATE_EPOCH=1703120277
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
 cp %{_builddir}/powerdevil-%{version}/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976 || :
@@ -275,9 +275,9 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libpowerdevilconfigcommonprivate.so.5.27.9
-/V3/usr/lib64/libpowerdevilcore.so.5.27.9
-/V3/usr/lib64/libpowerdevilui.so.5.27.9
+/V3/usr/lib64/libpowerdevilconfigcommonprivate.so.5.27.10
+/V3/usr/lib64/libpowerdevilcore.so.5.27.10
+/V3/usr/lib64/libpowerdevilui.so.5.27.10
 /V3/usr/lib64/qt5/plugins/kf5/powerdevil/powerdevilupowerbackend.so
 /V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilactivitiesconfig.so
 /V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilglobalconfig.so
@@ -301,11 +301,11 @@ popd
 /V3/usr/lib64/qt5/plugins/powerdevilsuspendsessionaction_config.so
 /V3/usr/lib64/qt5/plugins/powerdevilwirelesspowersavingaction_config.so
 /usr/lib64/libpowerdevilconfigcommonprivate.so.5
-/usr/lib64/libpowerdevilconfigcommonprivate.so.5.27.9
+/usr/lib64/libpowerdevilconfigcommonprivate.so.5.27.10
 /usr/lib64/libpowerdevilcore.so.2
-/usr/lib64/libpowerdevilcore.so.5.27.9
+/usr/lib64/libpowerdevilcore.so.5.27.10
 /usr/lib64/libpowerdevilui.so.5
-/usr/lib64/libpowerdevilui.so.5.27.9
+/usr/lib64/libpowerdevilui.so.5.27.10
 /usr/lib64/qt5/plugins/kf5/powerdevil/powerdevilupowerbackend.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilactivitiesconfig.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilglobalconfig.so
