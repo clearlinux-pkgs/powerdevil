@@ -1,0 +1,13 @@
+--- powerdevil-6.0.2/PowerDevilProfileSettings.kcfg~	2024-03-12 12:46:48.000000000 +0000
++++ powerdevil-6.0.2/PowerDevilProfileSettings.kcfg	2024-03-18 20:51:47.358464704 +0000
+@@ -73,8 +73,8 @@
+ 
+     <group name="SuspendAndShutdown" parentGroupName="$(ProfileId)">
+         <entry name="AutoSuspendAction" type="UInt">
+-            <default type="code">
+-                PowerDevil::ProfileDefaults::defaultAutoSuspendAction(mParamIsVM, mParamCanSuspend)
++            <default>
++                false
+             </default>
+         </entry>
+         <entry name="AutoSuspendIdleTimeoutSec" type="Int">
