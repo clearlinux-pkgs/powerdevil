@@ -9,7 +9,7 @@
 #
 Name     : powerdevil
 Version  : 6.0.2
-Release  : 86
+Release  : 87
 URL      : https://download.kde.org/stable/plasma/6.0.2/powerdevil-6.0.2.tar.xz
 Source0  : https://download.kde.org/stable/plasma/6.0.2/powerdevil-6.0.2.tar.xz
 Source1  : https://download.kde.org/stable/plasma/6.0.2/powerdevil-6.0.2.tar.xz.sig
@@ -120,7 +120,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1710795459
+export SOURCE_DATE_EPOCH=1711133991
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -181,7 +181,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1710795459
+export SOURCE_DATE_EPOCH=1711133991
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
 cp %{_builddir}/powerdevil-%{version}/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976 || :
@@ -237,6 +237,9 @@ popd
 /usr/share/dbus-1/system.d/org.kde.powerdevil.chargethresholdhelper.conf
 /usr/share/dbus-1/system.d/org.kde.powerdevil.discretegpuhelper.conf
 /usr/share/knotifications6/powerdevil.notifyrc
+/usr/share/polkit-1/actions/org.kde.powerdevil.backlighthelper.policy
+/usr/share/polkit-1/actions/org.kde.powerdevil.chargethresholdhelper.policy
+/usr/share/polkit-1/actions/org.kde.powerdevil.discretegpuhelper.policy
 /usr/share/qlogging-categories6/powerdevil.categories
 /usr/share/xdg/autostart/powerdevil.desktop
 
