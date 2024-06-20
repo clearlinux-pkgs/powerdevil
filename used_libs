@@ -2,8 +2,6 @@ libKF6AuthCore.so.6
 libKF6ConfigCore.so.6
 libKF6ConfigGui.so.6
 libKF6CoreAddons.so.6
-libKF6Crash.so.6
-libKF6DBusAddons.so.6
 libKF6GlobalAccel.so.6
 libKF6I18n.so.6
 libKF6IdleTime.so.6
@@ -13,10 +11,8 @@ libKF6Notifications.so.6
 libKF6Screen.so.8
 libKF6ScreenDpms.so.8
 libKF6Solid.so.6
-libKF6WindowSystem.so.6
 libKF6XmlGui.so.6
 libKirigamiPlatform.so.6
-libLayerShellQtInterface.so.6
 libPlasmaActivities.so.6
 libQt6Core.so.6
 libQt6DBus.so.6
