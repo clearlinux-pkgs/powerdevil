@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : powerdevil
-Version  : 6.1.2
-Release  : 94
-URL      : https://download.kde.org/stable/plasma/6.1.2/powerdevil-6.1.2.tar.xz
-Source0  : https://download.kde.org/stable/plasma/6.1.2/powerdevil-6.1.2.tar.xz
-Source1  : https://download.kde.org/stable/plasma/6.1.2/powerdevil-6.1.2.tar.xz.sig
+Version  : 6.1.3
+Release  : 95
+URL      : https://download.kde.org/stable/plasma/6.1.3/powerdevil-6.1.3.tar.xz
+Source0  : https://download.kde.org/stable/plasma/6.1.3/powerdevil-6.1.3.tar.xz
+Source1  : https://download.kde.org/stable/plasma/6.1.3/powerdevil-6.1.3.tar.xz.sig
 Source2  : D7574483BB57B18D.pkey
 Summary  : No detailed summary available
 Group    : Development/Tools
@@ -120,11 +120,11 @@ chmod 700 .gnupg
 gpg --homedir .gnupg --import %{SOURCE2}
 gpg --homedir .gnupg --status-fd 1 --verify %{SOURCE1} %{SOURCE0} > gpg.status
 grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) D7574483BB57B18D' gpg.status
-%setup -q -n powerdevil-6.1.2
-cd %{_builddir}/powerdevil-6.1.2
+%setup -q -n powerdevil-6.1.3
+cd %{_builddir}/powerdevil-6.1.3
 %patch -P 1 -p1
 pushd ..
-cp -a powerdevil-6.1.2 buildavx2
+cp -a powerdevil-6.1.3 buildavx2
 popd
 
 %build
@@ -132,7 +132,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1720630205
+export SOURCE_DATE_EPOCH=1721172799
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -195,7 +195,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1720630205
+export SOURCE_DATE_EPOCH=1721172799
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/powerdevil
 cp %{_builddir}/powerdevil-%{version}/COPYING %{buildroot}/usr/share/package-licenses/powerdevil/7c203dee3a03037da436df03c4b25b659c073976 || :
@@ -308,8 +308,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libpowerdevilconfigcommonprivate.so.6.1.2
-/V3/usr/lib64/libpowerdevilcore.so.6.1.2
+/V3/usr/lib64/libpowerdevilconfigcommonprivate.so.6.1.3
+/V3/usr/lib64/libpowerdevilcore.so.6.1.3
 /V3/usr/lib64/qt6/plugins/plasma/kcms/systemsettings/kcm_powerdevilprofilesconfig.so
 /V3/usr/lib64/qt6/plugins/powerdevil/action/powerdevil_brightnesscontrolaction.so
 /V3/usr/lib64/qt6/plugins/powerdevil/action/powerdevil_dimdisplayaction.so
@@ -320,9 +320,9 @@ popd
 /V3/usr/lib64/qt6/plugins/powerdevil/action/powerdevil_runscriptaction.so
 /V3/usr/lib64/qt6/plugins/powerdevil/action/powerdevil_suspendsessionaction.so
 /usr/lib64/libpowerdevilconfigcommonprivate.so.6
-/usr/lib64/libpowerdevilconfigcommonprivate.so.6.1.2
+/usr/lib64/libpowerdevilconfigcommonprivate.so.6.1.3
 /usr/lib64/libpowerdevilcore.so.2
-/usr/lib64/libpowerdevilcore.so.6.1.2
+/usr/lib64/libpowerdevilcore.so.6.1.3
 /usr/lib64/qt6/plugins/plasma/kcms/systemsettings/kcm_powerdevilprofilesconfig.so
 /usr/lib64/qt6/plugins/powerdevil/action/powerdevil_brightnesscontrolaction.so
 /usr/lib64/qt6/plugins/powerdevil/action/powerdevil_dimdisplayaction.so
