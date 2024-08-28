@@ -9,7 +9,7 @@
 #
 Name     : powerdevil
 Version  : 6.1.4
-Release  : 96
+Release  : 97
 URL      : https://download.kde.org/stable/plasma/6.1.4/powerdevil-6.1.4.tar.xz
 Source0  : https://download.kde.org/stable/plasma/6.1.4/powerdevil-6.1.4.tar.xz
 Source1  : https://download.kde.org/stable/plasma/6.1.4/powerdevil-6.1.4.tar.xz.sig
