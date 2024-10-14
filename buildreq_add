@@ -8,3 +8,4 @@ knotifyconfig-dev
 libkscreen-dev
 systemd-dev
 kirigami-dev
+qcoro6-dev
