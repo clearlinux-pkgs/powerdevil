@@ -134,6 +134,7 @@ libpowerdevilcore.so.2:PowerDevil::ProfileSettings::TurnOffDisplayWhenIdleChange
 libpowerdevilcore.so.2:PowerDevil::ProfileSettings::UseProfileSpecificDisplayBrightnessChanged()
 libpowerdevilcore.so.2:PowerDevil::ProfileSettings::UseProfileSpecificKeyboardBrightnessChanged()
 libpowerdevilcore.so.2:PowerDevil::ProfileSettings::~ProfileSettings()
+libpowerdevilcore.so.2:PowerDevil::ScreenBrightnessAgent::actOnBrightnessKey(PowerDevil::BrightnessLogic::StepAdjustmentAction)
 libpowerdevilcore.so.2:ScreenBrightnessController::ScreenBrightnessController()
 libpowerdevilcore.so.2:ScreenBrightnessController::detectDisplays()
 libpowerdevilcore.so.2:ScreenBrightnessController::detectionFinished()
